@@ -47,8 +47,8 @@ while True:
     print("Halaman terakhir: ", myStack.peek())
 
 while True:
-    back = input("Ketik 'Back' untuk kembali ke halaman web sebelumnya: ")
-    if back == "Back":
+    back = input("Ketik 'Back' untuk kembali ke halaman web sebelumnya: ").lower()
+    if back == "back":
         myStack.pop()
         print("Halaman web: ", myStack.peek())
     else:
