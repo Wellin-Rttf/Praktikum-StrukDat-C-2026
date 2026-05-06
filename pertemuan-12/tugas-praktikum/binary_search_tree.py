@@ -1,4 +1,4 @@
-class BinarySearchTree:
+class BST:
     def __init__(self):
         self.root = None
 
@@ -19,13 +19,13 @@ def insert(node, id_buku, judul):
             node.right = insert(node.right, id_buku, judul)
     return node
 
-def inOrderTraversal(node, counter=0):
+def traversal_inorder(node, counter=0):
     if node is None:
         return counter
-    counter = inOrderTraversal(node.left, counter)
+    counter = traversal_inorder(node.left, counter)
     counter += 1
     print(f"{counter}. {node.id_buku} - {node.judul}")
-    counter = inOrderTraversal(node.right, counter)
+    counter = traversal_inorder(node.right, counter)
     return counter
 
 def search(node, target):
@@ -38,13 +38,13 @@ def search(node, target):
     else:
         return search(node.right, target)
 
-def minValueNode(node):
+def get_min(node):
     current = node
     while current.left is not None:
         current = current.left
     return current
 
-def maxValueNode(node):
+def get_max(node):
     current = node
     while current.right is not None:
         current = current.right
@@ -62,7 +62,7 @@ def height(node):
 print("SISTEM KATALOG PERPUSTAKAAN \"ILMU TERANG\"")
 print("=========================================")
 
-tree = BinarySearchTree()
+tree = BST()
 tree.root = insert(tree.root, 50, "Dasar Pemrograman")
 print("[INSERT] Berhasil memasukkan: ID 50 - Dasar Pemrograman")
 tree.root = insert(tree.root, 30, "Struktur Data")
@@ -79,7 +79,7 @@ tree.root = insert(tree.root, 80, "Sistem Operasi")
 print("[INSERT] Berhasil memasukkan: ID 80 - Sistem Operasi")
 
 print("\n[INFO] Koleksi Buku (In-Order Traversal):")
-inOrderTraversal(tree.root)
+traversal_inorder(tree.root)
 
 print()
 for i in (60, 100):
@@ -90,8 +90,8 @@ for i in (60, 100):
     else:
         print("Data tidak ditemukan.")
 
-print(f"\n[STATISTIK] ID Terkecil: {minValueNode(tree.root).id_buku}")
-print(f"[STATISTIK] ID Terbesar: {maxValueNode(tree.root).id_buku}")
+print(f"\n[STATISTIK] ID Terkecil: {get_min(tree.root).id_buku}")
+print(f"[STATISTIK] ID Terbesar: {get_max(tree.root).id_buku}")
 
 print(f"\n[INFO] Tinggi (Height) Tree: {height(tree.root)}")
 print("=========================================")
